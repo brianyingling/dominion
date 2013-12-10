@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  h1 Users
+  - each user in users
+    p
+      span= user.firstName
+      span= user.lastName
+  
