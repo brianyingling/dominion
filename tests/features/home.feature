@@ -5,4 +5,4 @@ Feature: Home Page feature
   Scenario: Visit Home Page
     Given a variable set to 1
     When I am on the Home Page
-    Then I should see "Express" as the page title
+    Then I should see "Dominion" as the page title

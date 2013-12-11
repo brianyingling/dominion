@@ -1,3 +1,7 @@
+function pageLoaded(window) {
+  return window.document.querySelector('body');
+}
+
 var homeSteps = function() {
   this.World = require('../support/world.js').World;
 
@@ -14,12 +18,16 @@ var homeSteps = function() {
   });
 
   this.Then(/^I should see "([^"]*)" as the page title$/, function(title, callback){
-    var pageTitle = this.browser.text('title');
-    if (title === pageTitle) {
-      callback();
-    } else {
-      callback.fail(new Error('Expected to be on page with title' + title));
-    }
+    var self = this;
+    this.browser.wait(pageLoaded, function() {
+      var pageTitle = self.browser.text('title');
+      
+      if (title === pageTitle) {
+        callback();
+      } else {
+        callback.fail(new Error('Expected to be on page with title: ' + title + ' Error: ' + self.browser.error));
+      }
+    });
   });
 };
 

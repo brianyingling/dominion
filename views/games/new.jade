@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  h1 New Game
+  form(method='post', action='/games')
+    fieldset
+      label(for="game[title]")
+      input(type="text", id="game[title]", name="game[title]", placeholder="enter a title")
+      input(type="submit", value="Create Game")
