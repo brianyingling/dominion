@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 // User model
 
+=======
+>>>>>>> d4ec6a99893bae25dff8048eb8313b10ca159b67
 var mongoose  = require('mongoose'),
     Schema    = mongoose.Schema,
     ObjectId  = Schema.ObjectId;

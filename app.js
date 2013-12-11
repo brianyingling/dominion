@@ -39,6 +39,7 @@ if ('development' == app.get('env')) {
 }
 
 // define our routes
+<<<<<<< HEAD
 
 // home page
 app.get('/', routes.index);
@@ -55,6 +56,11 @@ app.post('/users',    users.create);
 app.get('/games',     games.index);
 app.get('/games/new', games.new);
 app.post('/games',    games.create);
+=======
+app.get('/', routes.index);
+app.get('/users', users.index);
+app.get('/games', games.index);
+>>>>>>> d4ec6a99893bae25dff8048eb8313b10ca159b67
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
