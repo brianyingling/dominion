@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  h1 Login
+  form(method='post', action='/login')
+    fieldset
+      label(for="user[email]") Email:
+      input(type='text', id="user[email]", name="user[email]")
+
+      label(for="user[password]") Password:
+      input(type="password", id="user[password]", name="user[password]")
+
+      input(type='submit', value='Log In')
