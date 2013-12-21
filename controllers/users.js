@@ -4,16 +4,15 @@ var hash = require('../lib/pass').hash;
 
 
 exports.index = function(req, res) {
-  debugger;
   User.find({}, function(err, data) {
     console.log(data);
-    res.render('users/index', {users: data});
+    res.render('users/index', {users: data, session: req.session});
   });
 };
 
 exports.show = function(req, res) {
   User.findById(req.params.id, function(err, user) {
-    res.render('users/show', {user: user});
+    res.render('users/show', {user: user, session: req.session});
   });
 };
 

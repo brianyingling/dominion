@@ -12,5 +12,5 @@ Feature: New Game
     And I click "New Game"
     And I fill in "game[title]" with "My First New Game"
     And I press "Create Game"
-    Then I should see "My First New Game"
+    Then I should see "My First New Game" listed
 

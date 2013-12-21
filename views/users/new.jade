@@ -4,10 +4,16 @@ block content
   h1 New User
   form(method='post', action='/users')
     fieldset
-      label(for="user[firstName]") First Name:
-      input(type='text', id="user[firstName]", name="user[firstName]")
+      label(for="user.firstName") First Name:
+      input(type='text', id="user.firstName", name="user[firstName]")
 
       label(for="user[lastName]") Last Name:
-      input(type='text', id="user[lastName]", name="user[lastName]")
+      input(type='text', id="user.lastName", name="user[lastName]")
+
+      label(for="user[email]") Email:
+      input(type='text', id="user.email", name="user[email]")
+
+      label(for="user[password]") Password:
+      input(type='password', id="user.password", name="user[password]")
 
       input(type='submit', value='Create User')

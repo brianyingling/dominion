@@ -4,4 +4,16 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    nav
+      h1 Dominion
+      ul
+        - if (session && session.firstName)
+          li 
+            span Welcome #{session.firstName} | 
+            a(href='/logout') Logout
+          li: a(href='/games') Games
+          li: a(href='/games/new') New Game
+        - else
+          li: a(href='/login') Login
+          li: a(href="/users/new") Sign Up
     block content

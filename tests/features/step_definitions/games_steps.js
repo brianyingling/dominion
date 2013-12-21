@@ -20,13 +20,25 @@ var gamesSteps = function() {
     else
       next.fail(new Error('Text does not match. H1: '+h1+', text: '+text));
   });
-  this.Given(/^I press "([^"]*)"$/, function(next) {
+  this.Given(/^I press "([^"]*)"/, function(text, next) {
     var self = this;
     this.browser.wait(pageLoaded, function() {
-      self.browser.pressButton("Create Game", function() {
+      self.browser.pressButton(text, function() {
         next();
       });
     });
+  });
+  this.Then(/^I should see "([^"]*)" listed$/, function(text, next) {
+    var self = this;
+    this.browser.wait(pageLoaded, function() {
+      var p = self.browser.html('p');
+      if (p.indexOf(text) != -1)
+        next();
+      else
+        next(new Error("Error: Text was not found"));
+      // write text that checks if text is included in html
+    });
+
   });
 };
 

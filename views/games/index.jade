@@ -1,5 +1,6 @@
 extends ../layout
 
 block content
-  h1 Games
-  p Welcome to #{title}
+  h2 Games
+  - each game in games
+    p= game.title
