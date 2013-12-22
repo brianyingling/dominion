@@ -14,8 +14,8 @@ var registerSteps = function() {
   this.Then(/^I should see "([^"]*)"$/, function(title, next) {
     var self = this;
     this.browser.wait(pageLoaded, function() {
-      var h1 = self.browser.text('h1');
-      if (title === h1)
+      var h1 = self.browser.text('body');
+      if (h1.indexOf(title) !== -1)
         next();
       else
         next.fail(new Error('Error: Expected to see '+title+', Instead saw: '+h1));
@@ -35,6 +35,25 @@ var registerSteps = function() {
     this.browser.wait(pageLoaded, function() {
       self.browser.pressButton('Create User', function() {
           next();
+      });
+    });
+  });
+
+  this.Given(/^I am Logged In$/, function(next) {
+    var self = this;
+    this.visit('http://localhost:3000/login');
+    this.browser.wait(pageLoaded, function() {
+      self.browser.fill("user[email]", "mj@mj.com");
+      self.browser.fill("user[password]", "mj");
+      self.browser.pressButton('Log In', function(){
+        
+        self.browser.wait(pageLoaded, function() {
+          var nav = self.browser.html('nav');
+          if (nav.indexOf('Michael') !== -1)
+            next();
+          else
+            next(new Error("Error: Not logged in. Nav is: "+nav));
+        });
       });
     });
   });

@@ -14,3 +14,11 @@ Feature: Registration
     And I fill in "user[lastName]" with "Jones"
     And I press 'Create User'
     Then I should see "Users"
+
+  Scenario: Logging In
+    Given I am on the Home Page
+    And I click "Login"
+    And I fill in "user[email]" with "mj@mj.com"
+    And I fill in "user[password]" with "mj"
+    And I press "Log In"
+    Then I should see "Welcome Michael"

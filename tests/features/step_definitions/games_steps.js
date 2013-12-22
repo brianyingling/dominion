@@ -14,11 +14,11 @@ var gamesSteps = function() {
   });
 
   this.Then(/^I should see "([^"]*)" as the header$/, function(text, next) {
-    var h1 = this.browser.text('h1');
-    if (h1 === text)
+    var h2 = this.browser.text('h2');
+    if (h2 === text)
       next();
     else
-      next.fail(new Error('Text does not match. H1: '+h1+', text: '+text));
+      next.fail(new Error('Text does not match. H1: '+h2+', text: '+text));
   });
   this.Given(/^I press "([^"]*)"/, function(text, next) {
     var self = this;
