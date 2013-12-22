@@ -15,6 +15,14 @@ exports.new = function(req, res) {
   res.render('games/new', {title: 'New Game', session: req.session});
 };
 
+exports.show = function(req, res) {
+  var game_id = req.url.split('/')[2];
+  Game.findById(game_id, function(err, game) {
+    if (err) return err;
+    res.render('games/show', {game: game, session: req.session});
+  });
+};
+
 exports.create = function(req, res) {
   game = new Game({title: req.body.game.title});
   game.save(function(err) {

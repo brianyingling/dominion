@@ -9,10 +9,11 @@ var path        = require('path');
 var mongoose    = require('mongoose');
 
 // controllers
-var home     = require('./controllers/home');
-var users    = require('./controllers/users');
-var games    = require('./controllers/games');
-var sessions = require('./controllers/sessions');
+var home           = require('./controllers/home');
+var users          = require('./controllers/users');
+var games          = require('./controllers/games');
+var sessions       = require('./controllers/sessions');
+var playerStatuses = require('./controllers/playerStatuses');
 
 // sessions
 var passport      = require('passport');
@@ -69,7 +70,8 @@ var config = {
     home:    home,
     users:   users,
     games:   games,
-    sessions: sessions
+    sessions: sessions,
+    playerStatuses: playerStatuses
   }
 };
 

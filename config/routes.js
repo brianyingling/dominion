@@ -1,11 +1,12 @@
 module.exports = function(config) {
-  var app   = config.app;
-  var auth  = config.auth;
-  var home  = config.controllers.home;
-  var users = config.controllers.users;
-  var games = config.controllers.games;
+  var app      = config.app;
+  var auth     = config.auth;
+  var home     = config.controllers.home;
+  var users    = config.controllers.users;
+  var games    = config.controllers.games;
   var sessions = config.controllers.sessions;
-  
+  var playerStatuses = config.controllers.playerStatuses;
+
   // home page
   app.get('/', home.index);
 
@@ -22,6 +23,11 @@ module.exports = function(config) {
 
   // /games
   app.get('/games',     auth.isAuthorized, games.index);
-  app.get('/games/new', auth.isAuthorized,  games.new);
+  app.get('/games/new', auth.isAuthorized, games.new);
+  app.get('/games/:id', auth.isAuthorized, games.show);
   app.post('/games',    auth.isAuthorized, games.create);
+
+  // playerStatuses
+  app.get('/playerStatuses', playerStatuses.index);
+
 };
