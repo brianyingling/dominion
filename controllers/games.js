@@ -24,7 +24,7 @@ exports.show = function(req, res) {
 };
 
 exports.create = function(req, res) {
-  game = new Game({title: req.body.game.title});
+  var game = new Game({title: req.body.game.title});
   game.save(function(err) {
     if (!err) {
       res.redirect('/games');
