@@ -10,7 +10,8 @@
     "mongoose":"3.8.1",
     "jade": "*",
     "passport":"latest",
-    "passport-local":"latest"
+    "passport-local":"latest",
+    "socket.io":"latest"
   },
   "devDependencies":{
     "zombie":"latest",
