@@ -18,10 +18,21 @@ Feature: New Game
 
 Feature: View a List of Games
   As a User
-  I want to join a game
+  I want to view a list of games
 
   Scenario: 
-  Given I am Logged In
-  And I am on the Home Page
-  And I click "Games"
-  Then I should see "Games" as the header
+    Given I am Logged In
+    And I am on the Home Page
+    And I click "Games"
+    Then I should see "Games" as the header
+
+Feature: View a Game
+  As a User
+  I want to view a game
+
+  Scenario:
+    Given I am Logged In
+    And I am on the Home Page
+    And I click "Games"
+    And I click "My Awesome Dominion Game"
+    Then I should see "Patrons"
