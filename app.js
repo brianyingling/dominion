@@ -7,6 +7,9 @@ var express     = require('express');
 var http        = require('http');
 var path        = require('path');
 var mongoose    = require('mongoose');
+var app         = express();
+var server      = http.createServer(app);
+var io          = require('socket.io').listen(server);
 
 // controllers
 var home           = require('./controllers/home');
@@ -20,7 +23,6 @@ var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var auth          = require('./lib/auth');
 
-var app = express();
 mongoose.connect('mongodb://localhost/dominion');
 
 
@@ -78,7 +80,6 @@ var config = {
 // routes file
 require('./config/routes') (config);
 
-
-http.createServer(app).listen(app.get('port'), function(){
+server.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
