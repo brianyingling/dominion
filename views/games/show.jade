@@ -2,3 +2,7 @@ extends ../layout
 
 block content
   h2= game.title
+  h3 Patrons
+  ul
+  - for patron in game.patrons
+    li= patron.firstName
