@@ -13,7 +13,11 @@ exports.create = function(req, res) {
       return done(null, false, {message: 'Incorrect username'});
     
     if (user.password === user.encryptPassword(req.body.user.password)) {
-      req.session.id        = user.id;
+      req.session.user = {
+        user_id:   user.id,
+        firstName: user.firstName
+      };
+      req.session.user_id   = user.id;
       req.session.firstName = user.firstName;
       res.redirect('/users/'+user.id);
     }

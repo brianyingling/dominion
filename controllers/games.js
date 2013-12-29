@@ -1,3 +1,5 @@
+var _und = require('underscore');
+
 var Game = require('../models/game.js');
 var User = require('../models/user.js');
 
@@ -19,7 +21,18 @@ exports.show = function(req, res) {
   var game_id = req.url.split('/')[2];
   Game.findById(game_id, function(err, game) {
     if (err) return err;
-    res.render('games/show', {game: game, session: req.session});
+    
+    ids = _und.pluck(game.patrons, 'id');
+    if(req.session.user_id && !_und.contains(ids, req.session.user_id)) {
+      game.addPatron({
+        id:        req.session.user_id,
+        firstName: req.session.firstName
+      });
+    }
+    game.save(function(err) {
+      if (err) return err;
+      res.render('games/show', {game: game, session: req.session});
+    });
   });
 };
 

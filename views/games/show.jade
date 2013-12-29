@@ -6,3 +6,26 @@ block content
   ul
   - for patron in game.patrons
     li= patron.firstName
+
+  h3 Socket Patrons
+  ul#socket_patrons 
+
+  script
+    var socket = io.connect();
+    socket.emit('joinroom', {
+      user: {
+        id: "#{session.user_id}",
+        firstName: "#{session.firstName}"
+      },
+      game:    "#{game.id}", 
+      user_id: "#{session.user_id}"
+    });
+
+    socket.on('updatechat', function(data) {
+      $('#socket_patrons').empty();
+      console.log(data);
+      for(var i=0; i < data.length; i++) {
+        var user = data[i];
+        $('#socket_patrons').append('<li>'+user.firstName+'</li>');
+      } 
+    });

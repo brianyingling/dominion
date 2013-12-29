@@ -35,4 +35,4 @@ Feature: View a Game
     And I am on the Home Page
     And I click "Games"
     And I click "My Awesome Dominion Game"
-    Then I should see "Patrons"
+    Then I should see "Michael"

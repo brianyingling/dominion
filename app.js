@@ -6,10 +6,13 @@
 var express     = require('express');
 var http        = require('http');
 var path        = require('path');
+var _und        = require('underscore');
 var mongoose    = require('mongoose');
 var app         = express();
 var server      = http.createServer(app);
 var io          = require('socket.io').listen(server);
+
+
 
 // controllers
 var home           = require('./controllers/home');
@@ -80,6 +83,27 @@ var config = {
 // routes file
 require('./config/routes') (config);
 
+var patrons_rooms = {};
+io.sockets.on('connection', function(socket) {
+  
+  ids = _und.pluck(_und.flatten(patrons_rooms), 'id');
+
+  socket.on('joinroom', function(data) {
+    if (!data.user.id) return;
+    if (!_und.contains(ids, data.user.id)) {
+      if (patrons_rooms[data.game]) {
+        patrons_rooms[data.game].push(data.user);
+      }
+      else {
+        patrons_rooms[data.game] = [];
+        patrons_rooms[data.game].push(data.user);
+      }
+    }
+    socket.join(data.game);
+    io.sockets.in(data.game).emit('updatechat',patrons_rooms[data.game]);
+  });
+});
+  
 server.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });

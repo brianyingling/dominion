@@ -11,7 +11,8 @@
     "jade": "*",
     "passport":"latest",
     "passport-local":"latest",
-    "socket.io":"latest"
+    "socket.io":"latest",
+    "underscore":"1.5.2"
   },
   "devDependencies":{
     "zombie":"latest",

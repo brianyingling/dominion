@@ -61,9 +61,9 @@ describe('Game', function() {
       user.save();
     });
     it('adds a user to the list of patrons in the game', function() {
-      game.addPatron(user.id);
+      game.addPatron({id: user.id, firstName: user.firstName});
       len = game.patrons.length;
-      expect(game.patrons[len-1]).toEqual(user.id);
+      expect(game.patrons[len-1].id).toEqual(user.id);
     });
   });
 
