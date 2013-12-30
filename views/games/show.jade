@@ -3,12 +3,7 @@ extends ../layout
 block content
   h2= game.title
   h3 Patrons
-  ul
-  - for patron in game.patrons
-    li= patron.firstName
-
-  h3 Socket Patrons
-  ul#socket_patrons 
+  ul#patrons 
 
   script
     var socket = io.connect();
@@ -22,10 +17,10 @@ block content
     });
 
     socket.on('updatechat', function(data) {
-      $('#socket_patrons').empty();
+      $('#patrons').empty();
       console.log(data);
       for(var i=0; i < data.length; i++) {
         var user = data[i];
-        $('#socket_patrons').append('<li>'+user.firstName+'</li>');
+        $('#patrons').append('<li>'+user.firstName+'</li>');
       } 
     });

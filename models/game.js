@@ -8,7 +8,6 @@ var gameSchema = new Schema({
   title:         String,
   maxNumPlayers: Number,
   players:       Array,
-  patrons:       Array,
   cards:         Array,
   isActive:      {type: Boolean, default: false},
   isWon:         {type: Boolean, default: false},

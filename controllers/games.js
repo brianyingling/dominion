@@ -22,17 +22,7 @@ exports.show = function(req, res) {
   Game.findById(game_id, function(err, game) {
     if (err) return err;
     
-    ids = _und.pluck(game.patrons, 'id');
-    if(req.session.user_id && !_und.contains(ids, req.session.user_id)) {
-      game.addPatron({
-        id:        req.session.user_id,
-        firstName: req.session.firstName
-      });
-    }
-    game.save(function(err) {
-      if (err) return err;
-      res.render('games/show', {game: game, session: req.session});
-    });
+    res.render('games/show', {game: game, session: req.session});
   });
 };
 

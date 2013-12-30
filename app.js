@@ -106,6 +106,7 @@ io.sockets.on('connection', function(socket) {
     io.sockets.in(data.game).emit('updatechat',patrons_rooms[data.game]);
   });
 
+  // Removes a user from the patrons_rooms array if they disconnect
   socket.on('disconnect', function() {
     console.log('------------ DISCONNECTED! --------------------');
     if (socket.user && socket.room) {
@@ -117,7 +118,6 @@ io.sockets.on('connection', function(socket) {
           io.sockets.in(socket.room).emit('updatechat', patrons);
         }
       });
-      console.log(patrons_rooms[socket.room]);
     }
   });
 
