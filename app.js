@@ -12,8 +12,6 @@ var app         = express();
 var server      = http.createServer(app);
 var io          = require('socket.io').listen(server);
 
-
-
 // controllers
 var home           = require('./controllers/home');
 var users          = require('./controllers/users');
@@ -85,24 +83,46 @@ require('./config/routes') (config);
 
 var patrons_rooms = {};
 io.sockets.on('connection', function(socket) {
+  console.log("--- CONNECTED --- ");
+  console.log(patrons_rooms);
   
   ids = _und.pluck(_und.flatten(patrons_rooms), 'id');
 
   socket.on('joinroom', function(data) {
+    socket.user = data.user;
     if (!data.user.id) return;
+    
     if (!_und.contains(ids, data.user.id)) {
+      
       if (patrons_rooms[data.game]) {
         patrons_rooms[data.game].push(data.user);
-      }
-      else {
+      } else {
         patrons_rooms[data.game] = [];
         patrons_rooms[data.game].push(data.user);
       }
     }
     socket.join(data.game);
+    socket.room = data.game;
     io.sockets.in(data.game).emit('updatechat',patrons_rooms[data.game]);
   });
+
+  socket.on('disconnect', function() {
+    console.log('------------ DISCONNECTED! --------------------');
+    if (socket.user && socket.room) {
+      patrons = patrons_rooms[socket.room];
+      _und.each(patrons, function(patron) {
+        if (patron.id === socket.user.id) {
+          var i = patrons.indexOf(patron);
+          patrons.splice(i, 1);
+          io.sockets.in(socket.room).emit('updatechat', patrons);
+        }
+      });
+      console.log(patrons_rooms[socket.room]);
+    }
+  });
+
 });
+
   
 server.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
