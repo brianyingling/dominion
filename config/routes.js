@@ -16,16 +16,22 @@ module.exports = function(config) {
   app.get('/logout',  sessions.destroy);
 
   // /users
-  app.get('/users',     auth.isAuthorized, users.index);
-  app.get('/users/new', auth.isAuthorized, users.new);
+  app.get('/users',                        users.index);
+  app.get('/users/new',                    users.new);
   app.get('/users/:id', auth.isAuthorized, users.show);
-  app.post('/users',    auth.isAuthorized, users.create);
+  app.post('/users',                       users.create);
 
   // /games
+  // app.get('/games',     games.index);
+  // app.get('/games/new', games.new);
+  // app.get('/games/:id', games.show);
+  // app.post('/games',    games.create);
+
   app.get('/games',     auth.isAuthorized, games.index);
   app.get('/games/new', auth.isAuthorized, games.new);
   app.get('/games/:id', auth.isAuthorized, games.show);
   app.post('/games',    auth.isAuthorized, games.create);
+
 
   // playerStatuses
   app.get('/playerStatuses', playerStatuses.index);
