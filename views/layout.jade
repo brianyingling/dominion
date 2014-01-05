@@ -11,9 +11,9 @@ html
     nav
       h1 Dominion
       ul
-        - if (session && session.firstName)
-          li 
-            span Welcome #{session.firstName} | 
+        - if (user)
+          li
+            span Welcome #{user.firstName} |
             a(href='/logout') Logout
           li: a(href='/games') Games
           li: a(href='/games/new') New Game
