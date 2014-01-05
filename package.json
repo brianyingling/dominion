@@ -16,6 +16,6 @@
   },
   "devDependencies":{
     "zombie":"latest",
-    "cucumber":"latest"
+    "cucumber":"0.3.3"
   }
 }
