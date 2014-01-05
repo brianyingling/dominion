@@ -27,7 +27,7 @@ exports.create = function(req, res) {
     lastName:  user.lastName,
     email:     user.email
   });
-  
+
   user.password = user.encryptPassword(req.body.user.password);
 
   // hash(req.body.user.password, function (err, salt, hash) {
@@ -36,12 +36,22 @@ exports.create = function(req, res) {
   //   user.hash = hash.toString();
   // });
 
+  // save the user in the db and create a session so
+  // that the user doesn't have to login after
+  // registering
   user.save(function(err) {
     if (err) {
       console.error('Error: Could not save:' + err);
       res.render('users/new');
     } else {
-      res.redirect('users/');
+      req.session.user = {
+        user_id:   user.id,
+        firstName: user.firstName
+      };
+      // legacy -- figure out how to remove these
+      req.session.user_id   = user.id;
+      req.session.firstName = user.firstName;
+      res.redirect('/');
     }
   });
 };
