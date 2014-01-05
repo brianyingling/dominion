@@ -3,6 +3,5 @@ Feature: Home Page feature
   I want to visit the Home Page
 
   Scenario: Visit Home Page
-    Given a variable set to 1
     When I am on the Home Page
     Then I should see "Dominion" as the page title

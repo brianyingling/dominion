@@ -12,6 +12,8 @@ Feature: Registration
     And I press 'Sign Up'
     And I fill in "user[firstName]" with "Bob"
     And I fill in "user[lastName]" with "Jones"
+    And I fill in "user[email]" with "bob@jones.com"
+    And I fill in "user[password]" with "bob"
     And I press 'Create User'
     Then I should see "Users"
 
@@ -23,4 +25,3 @@ Feature: Registration
     And I press "Log In"
     Then I should see "Welcome Michael"
 
-    
