@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 
 var gameSchema = new Schema({
   title:         String,
-  maxNumPlayers: Number,
+  maxNumPlayers: {type: Number, default: 4},
   players:       Array,
   cards:         Array,
   isActive:      {type: Boolean, default: false},
@@ -18,6 +18,13 @@ var gameSchema = new Schema({
 gameSchema.methods = {
   addPatron: function(patron) {
     this.patrons.push(patron);
+  },
+
+  // Starts the game by:
+  // 1. Creating PlayerStatuses for 1st several patrons
+  // 2.
+  start: function() {
+
   }
 };
 

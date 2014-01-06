@@ -22,11 +22,6 @@ module.exports = function(config) {
   app.post('/users',                       users.create);
 
   // /games
-  // app.get('/games',     games.index);
-  // app.get('/games/new', games.new);
-  // app.get('/games/:id', games.show);
-  // app.post('/games',    games.create);
-
   app.get('/games',     auth.isAuthorized, games.index);
   app.get('/games/new', auth.isAuthorized, games.new);
   app.get('/games/:id', auth.isAuthorized, games.show);

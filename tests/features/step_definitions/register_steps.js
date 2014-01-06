@@ -46,7 +46,7 @@ var registerSteps = function() {
       self.browser.fill("user[email]", "mj@mj.com");
       self.browser.fill("user[password]", "mj");
       self.browser.pressButton('Log In', function(){
-        
+
         self.browser.wait(pageLoaded, function() {
           var nav = self.browser.html('nav');
           if (nav.indexOf('Michael') !== -1)

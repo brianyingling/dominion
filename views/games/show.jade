@@ -9,11 +9,11 @@ block content
     var socket = io.connect();
     socket.emit('joinroom', {
       user: {
-        id:        "#{session.user_id}",
-        firstName: "#{session.firstName}"
+        id:        "#{user.user_id}",
+        firstName: "#{user.firstName}"
       },
       game:    "#{game.id}",
-      user_id: "#{session.user_id}"
+      user_id: "#{user.user_id}"
     });
 
     socket.on('updatechat', function(data) {

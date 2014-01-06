@@ -49,8 +49,8 @@ exports.create = function(req, res) {
         firstName: user.firstName
       };
       // legacy -- figure out how to remove these
-      req.session.user_id   = user.id;
-      req.session.firstName = user.firstName;
+      // req.session.user_id   = user.id;
+      // req.session.firstName = user.firstName;
       res.redirect('/');
     }
   });

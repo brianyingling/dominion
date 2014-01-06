@@ -14,6 +14,9 @@ exports.create = function(req, res) {
         user_id:   user.id,
         firstName: user.firstName
       };
+      // legacy -- figure out how to remove these
+      // req.session.user_id   = user.id;
+      // req.session.firstName = user.firstName;
       res.redirect('/users/'+user.id);
     }
     else {

@@ -14,14 +14,17 @@ var homeSteps = function() {
   });
 
   this.When(/^I am on the Home Page$/, function(callback) {
-    this.visit("http://localhost:3000", callback);
+    var self = this;
+    this.browser.wait(pageLoaded, function() {
+      self.visit("http://localhost:3000", callback);
+    });
   });
 
   this.Then(/^I should see "([^"]*)" as the page title$/, function(title, callback){
     var self = this;
     this.browser.wait(pageLoaded, function() {
       var pageTitle = self.browser.text('title');
-      
+
       if (title === pageTitle) {
         callback();
       } else {
