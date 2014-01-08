@@ -2,7 +2,7 @@ var Game = require('../../models/game.js');
 var User = require('../../models/user.js');
 
 describe('Game', function() {
-  
+
   var game = new Game();
   beforeEach(function() {
     game.title         = 'Test Game Title';
@@ -10,7 +10,7 @@ describe('Game', function() {
   });
 
   describe('properties', function() {
-    
+
     it('has a game title', function() {
       expect(game.title).toEqual('Test Game Title');
     });
@@ -35,35 +35,15 @@ describe('Game', function() {
     });
   });
 
-  describe('.patrons', function() {
-    it('contains the user ids of those in the room', function() {
-      var user_id1 = 'ceare32w34sdfa3',
-          user_id2 = 'eareavertawrer4';
 
-      game.patrons.push(user_id1);
-      game.patrons.push(user_id2);
+  // start() does the following:
+  // 1. converts the first x number of patrons to players, where x is the maxNumPlayers
+  // 2. creates playerStatues for each player
+  // 3. delivers to each player a deck of cards
+  // 4. prepares the board -- the available number of cards to purchase
+  describe('.start', function() {
+    it('starts the game', function() {
 
-      expect(game.patrons[0]).toEqual(user_id1);
-      expect(game.patrons[1]).toEqual(user_id2);
-    });
-  });
-
-  describe('.addPatron', function() {
-    var user;
-
-    beforeEach(function() {
-      user = new User({
-        firstName: 'Bob',
-        lastName:  'Smith',
-        email:     'bob@bob.bom',
-        password:  'password'
-      });
-      user.save();
-    });
-    it('adds a user to the list of patrons in the game', function() {
-      game.addPatron({id: user.id, firstName: user.firstName});
-      len = game.patrons.length;
-      expect(game.patrons[len-1].id).toEqual(user.id);
     });
   });
 

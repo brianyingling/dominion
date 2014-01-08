@@ -16,10 +16,6 @@ var gameSchema = new Schema({
 });
 
 gameSchema.methods = {
-  addPatron: function(patron) {
-    this.patrons.push(patron);
-  },
-
   // Starts the game by:
   // 1. Creating PlayerStatuses for 1st several patrons
   // 2.
